@@ -1,0 +1,215 @@
+call:
+  name: Call action with retry
+  description: Calls a Home Assistant action with configurable retries, exponential backoff, state validation, and error handling.
+  fields:
+    action:
+      name: Action
+      description: The Home Assistant action/service to execute (e.g. light.turn_on, switch.turn_off, notify.mobile_app).
+      required: true
+      example: light.turn_on
+      selector:
+        action: {}
+    target:
+      name: Target
+      description: Target entities, devices, or areas for the action.
+      required: false
+      selector:
+        target: {}
+    data:
+      name: Data
+      description: Parameters to pass to the target action.
+      required: false
+      selector:
+        object: {}
+    retries:
+      name: Retries
+      description: Maximum number of retry attempts after the initial failure.
+      required: false
+      default: 3
+      selector:
+        number:
+          min: 1
+          max: 50
+          mode: box
+    delay:
+      name: Delay
+      description: Initial delay in seconds before the first retry attempt.
+      required: false
+      default: 1.0
+      selector:
+        number:
+          min: 0.1
+          max: 3600
+          step: 0.1
+          mode: box
+          unit_of_measurement: s
+    backoff:
+      name: Backoff multiplier
+      description: Multiplier applied to delay on each retry (exponential backoff). Use 1.0 for fixed delay.
+      required: false
+      default: 2.0
+      selector:
+        number:
+          min: 1.0
+          max: 10.0
+          step: 0.1
+          mode: box
+    max_delay:
+      name: Maximum delay
+      description: Maximum delay cap in seconds between retry attempts.
+      required: false
+      default: 60.0
+      selector:
+        number:
+          min: 1.0
+          max: 3600
+          step: 1.0
+          mode: box
+          unit_of_measurement: s
+    expected_state:
+      name: Expected state
+      description: Optional state the target entity must reach for the action to be considered successful (e.g. 'on', 'off').
+      required: false
+      example: "on"
+      selector:
+        text: {}
+    expected_state_timeout:
+      name: Expected state timeout
+      description: Maximum seconds to wait for the target entity to reach the expected state before retrying.
+      required: false
+      default: 2.0
+      selector:
+        number:
+          min: 0.1
+          max: 60
+          step: 0.5
+          mode: box
+          unit_of_measurement: s
+    on_error:
+      name: On error fallback
+      description: Sequence of actions to run if all retry attempts fail (e.g. send a notification). The error message is available in Jinja templates as {{ error }}.
+      required: false
+      selector:
+        action: {}
+    raise_on_failure:
+      name: Raise on failure
+      description: If enabled, raises an error that stops the automation when all retries fail. If disabled, logs failure and allows the automation to continue.
+      required: false
+      default: false
+      selector:
+        boolean: {}
+    create_repair:
+      name: Create repair issue
+      description: If enabled, creates a Home Assistant repair issue when all retries are exhausted. Automatically cleared on subsequent success.
+      required: false
+      default: false
+      selector:
+        boolean: {}
+
+action:
+  name: Execute action with retry
+  description: Alias for retry_ha.call. Calls a Home Assistant action with configurable retries, exponential backoff, state validation, and error handling.
+  fields:
+    action:
+      name: Action
+      description: The Home Assistant action/service to execute (e.g. light.turn_on, switch.turn_off, notify.mobile_app).
+      required: true
+      example: light.turn_on
+      selector:
+        action: {}
+    target:
+      name: Target
+      description: Target entities, devices, or areas for the action.
+      required: false
+      selector:
+        target: {}
+    data:
+      name: Data
+      description: Parameters to pass to the target action.
+      required: false
+      selector:
+        object: {}
+    retries:
+      name: Retries
+      description: Maximum number of retry attempts after the initial failure.
+      required: false
+      default: 3
+      selector:
+        number:
+          min: 1
+          max: 50
+          mode: box
+    delay:
+      name: Delay
+      description: Initial delay in seconds before the first retry attempt.
+      required: false
+      default: 1.0
+      selector:
+        number:
+          min: 0.1
+          max: 3600
+          step: 0.1
+          mode: box
+          unit_of_measurement: s
+    backoff:
+      name: Backoff multiplier
+      description: Multiplier applied to delay on each retry (exponential backoff). Use 1.0 for fixed delay.
+      required: false
+      default: 2.0
+      selector:
+        number:
+          min: 1.0
+          max: 10.0
+          step: 0.1
+          mode: box
+    max_delay:
+      name: Maximum delay
+      description: Maximum delay cap in seconds between retry attempts.
+      required: false
+      default: 60.0
+      selector:
+        number:
+          min: 1.0
+          max: 3600
+          step: 1.0
+          mode: box
+          unit_of_measurement: s
+    expected_state:
+      name: Expected state
+      description: Optional state the target entity must reach for the action to be considered successful (e.g. 'on', 'off').
+      required: false
+      example: "on"
+      selector:
+        text: {}
+    expected_state_timeout:
+      name: Expected state timeout
+      description: Maximum seconds to wait for the target entity to reach the expected state before retrying.
+      required: false
+      default: 2.0
+      selector:
+        number:
+          min: 0.1
+          max: 60
+          step: 0.5
+          mode: box
+          unit_of_measurement: s
+    on_error:
+      name: On error fallback
+      description: Sequence of actions to run if all retry attempts fail (e.g. send a notification). The error message is available in Jinja templates as {{ error }}.
+      required: false
+      selector:
+        action: {}
+    raise_on_failure:
+      name: Raise on failure
+      description: If enabled, raises an error that stops the automation when all retries fail. If disabled, logs failure and allows the automation to continue.
+      required: false
+      default: false
+      selector:
+        boolean: {}
+    create_repair:
+      name: Create repair issue
+      description: If enabled, creates a Home Assistant repair issue when all retries are exhausted. Automatically cleared on subsequent success.
+      required: false
+      default: false
+      selector:
+        boolean: {}

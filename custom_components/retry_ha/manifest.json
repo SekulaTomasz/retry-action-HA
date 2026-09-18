@@ -1,0 +1,12 @@
+{
+  "domain": "retry_ha",
+  "name": "Retry HA",
+  "codeowners": ["@tomek"],
+  "config_flow": true,
+  "documentation": "https://github.com/tomek/retry-HA",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/tomek/retry-HA/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}

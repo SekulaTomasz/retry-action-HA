@@ -1,0 +1,144 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Retry HA",
+        "description": "Click Submit to activate Retry HA. This will register the `retry_ha.call` and `retry_ha.action` actions for use in your automations and scripts."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Retry HA is already configured. Only a single instance is needed."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Retry HA Default Settings",
+        "description": "Configure default parameters used when not explicitly specified in action calls.",
+        "data": {
+          "default_retries": "Default number of retries",
+          "default_delay": "Default initial delay (seconds)",
+          "default_backoff": "Default backoff multiplier",
+          "default_max_delay": "Default maximum delay (seconds)",
+          "default_raise_on_failure": "Default raise on failure"
+        }
+      }
+    }
+  },
+  "issues": {
+    "action_failed": {
+      "title": "Action failed: {action}",
+      "description": "The action `{action}` failed after {attempts} attempts.\n\nError: `{error}`\n\nPlease check the target device connectivity or integration configuration."
+    }
+  },
+  "services": {
+    "call": {
+      "name": "Call action with retry",
+      "description": "Calls a Home Assistant action with configurable retries, exponential backoff, state validation, and error handling.",
+      "fields": {
+        "action": {
+          "name": "Action",
+          "description": "The action to execute (e.g. light.turn_on)."
+        },
+        "target": {
+          "name": "Target",
+          "description": "Target entities, devices, or areas."
+        },
+        "data": {
+          "name": "Data",
+          "description": "Parameters to pass to the action."
+        },
+        "retries": {
+          "name": "Retries",
+          "description": "Maximum retry attempts."
+        },
+        "delay": {
+          "name": "Delay",
+          "description": "Initial delay between attempts in seconds."
+        },
+        "backoff": {
+          "name": "Backoff multiplier",
+          "description": "Exponential backoff multiplier."
+        },
+        "max_delay": {
+          "name": "Maximum delay",
+          "description": "Maximum delay ceiling in seconds."
+        },
+        "expected_state": {
+          "name": "Expected state",
+          "description": "State target entity must reach (e.g. 'on')."
+        },
+        "expected_state_timeout": {
+          "name": "Expected state timeout",
+          "description": "Seconds to wait for target entity to reach expected state."
+        },
+        "on_error": {
+          "name": "On error fallback",
+          "description": "Actions to run if all retries fail."
+        },
+        "raise_on_failure": {
+          "name": "Raise on failure",
+          "description": "Whether to raise an error stopping the automation."
+        },
+        "create_repair": {
+          "name": "Create repair issue",
+          "description": "Create a Home Assistant repair issue on failure."
+        }
+      }
+    },
+    "action": {
+      "name": "Execute action with retry",
+      "description": "Alias for retry_ha.call.",
+      "fields": {
+        "action": {
+          "name": "Action",
+          "description": "The action to execute (e.g. light.turn_on)."
+        },
+        "target": {
+          "name": "Target",
+          "description": "Target entities, devices, or areas."
+        },
+        "data": {
+          "name": "Data",
+          "description": "Parameters to pass to the action."
+        },
+        "retries": {
+          "name": "Retries",
+          "description": "Maximum retry attempts."
+        },
+        "delay": {
+          "name": "Delay",
+          "description": "Initial delay between attempts in seconds."
+        },
+        "backoff": {
+          "name": "Backoff multiplier",
+          "description": "Exponential backoff multiplier."
+        },
+        "max_delay": {
+          "name": "Maximum delay",
+          "description": "Maximum delay ceiling in seconds."
+        },
+        "expected_state": {
+          "name": "Expected state",
+          "description": "State target entity must reach (e.g. 'on')."
+        },
+        "expected_state_timeout": {
+          "name": "Expected state timeout",
+          "description": "Seconds to wait for target entity to reach expected state."
+        },
+        "on_error": {
+          "name": "On error fallback",
+          "description": "Actions to run if all retries fail."
+        },
+        "raise_on_failure": {
+          "name": "Raise on failure",
+          "description": "Whether to raise an error stopping the automation."
+        },
+        "create_repair": {
+          "name": "Create repair issue",
+          "description": "Create a Home Assistant repair issue on failure."
+        }
+      }
+    }
+  }
+}
