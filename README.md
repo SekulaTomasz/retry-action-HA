@@ -1,7 +1,7 @@
 # Retry HA (Home Assistant Custom Integration)
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/default)
-[![Validate](https://github.com/tomek/retry-HA/actions/workflows/validate.yml/badge.svg)](https://github.com/tomek/retry-HA/actions/workflows/validate.yml)
+[![Validate](https://github.com/SekulaTomasz/retry-action-HA/actions/workflows/validate.yml/badge.svg)](https://github.com/SekulaTomasz/retry-action-HA/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Retry HA** is a robust Home Assistant custom integration that wraps any service/action call with automatic retries, exponential backoff, target state verification, and comprehensive error handling.
@@ -35,7 +35,7 @@ Eliminate automation failures caused by:
 3. Click the **3 dots** (top right) and select **Custom repositories**.
 4. Enter the repository URL:
    ```text
-   https://github.com/tomek/retry-HA
+   https://github.com/SekulaTomasz/retry-action-HA
    ```
 5. Select **Integration** as the Category, then click **Add**.
 6. Find **Retry HA** in the integration list and click **Download**.
