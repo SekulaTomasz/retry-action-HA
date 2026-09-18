@@ -1,0 +1,144 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Skonfiguruj Retry HA",
+        "description": "Kliknij Zatwierdź, aby aktywować Retry HA. Zarejestruje to akcje `retry_ha.call` oraz `retry_ha.action` do użycia w Twoich automatyzacjach i skryptach."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Retry HA jest już skonfigurowane. Wymagana jest tylko jedna instancja."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Domyślne ustawienia Retry HA",
+        "description": "Skonfiguruj parametry domyślne używane, gdy nie zostaną one jawnie podane podczas wywołania akcji.",
+        "data": {
+          "default_retries": "Domyślna liczba prób ponowienia",
+          "default_delay": "Domyślne początkowe opóźnienie (sekundy)",
+          "default_backoff": "Domyślny mnożnik opóźnienia (backoff)",
+          "default_max_delay": "Domyślne maksymalne opóźnienie (sekundy)",
+          "default_raise_on_failure": "Domyślnie zgłaszaj błąd przy niepowodzeniu"
+        }
+      }
+    }
+  },
+  "issues": {
+    "action_failed": {
+      "title": "Akcja nie powiodła się: {action}",
+      "description": "Akcja `{action}` nie powiodła się po {attempts} próbach.\n\nBłąd: `{error}`\n\nSprawdź łączność z urządzeniem docelowym lub konfigurację integracji."
+    }
+  },
+  "services": {
+    "call": {
+      "name": "Wywołaj akcję z ponawianiem",
+      "description": "Wywołuje akcję Home Assistant z konfigurowalną liczbą ponowień, wykładniczym opóźnieniem (backoff), weryfikacją stanu oraz obsługą błędów.",
+      "fields": {
+        "action": {
+          "name": "Akcja",
+          "description": "Akcja do wykonania (np. light.turn_on)."
+        },
+        "target": {
+          "name": "Cel",
+          "description": "Docelowe encje, urządzenia lub obszary."
+        },
+        "data": {
+          "name": "Dane",
+          "description": "Parametry przekazywane do akcji."
+        },
+        "retries": {
+          "name": "Liczba ponowień",
+          "description": "Maksymalna liczba prób ponowienia."
+        },
+        "delay": {
+          "name": "Opóźnienie",
+          "description": "Początkowe opóźnienie między próbami w sekundach."
+        },
+        "backoff": {
+          "name": "Mnożnik opóźnienia",
+          "description": "Wykładniczy mnożnik opóźnienia."
+        },
+        "max_delay": {
+          "name": "Maksymalne opóźnienie",
+          "description": "Maksymalny limit opóźnienia w sekundach."
+        },
+        "expected_state": {
+          "name": "Oczekiwany stan",
+          "description": "Stan, jaki musi osiągnąć encja docelowa (np. 'on')."
+        },
+        "expected_state_timeout": {
+          "name": "Limit czasu oczekiwanego stanu",
+          "description": "Czas oczekiwania na osiągnięcie oczekiwanego stanu przez encję (w sekundach)."
+        },
+        "on_error": {
+          "name": "Akcja awaryjna przy błędzie",
+          "description": "Akcje do wykonania, jeśli wszystkie próby ponowienia zawiodą."
+        },
+        "raise_on_failure": {
+          "name": "Zgłaszaj błąd przy niepowodzeniu",
+          "description": "Określa, czy zgłaszać błąd przerywający automatyzację."
+        },
+        "create_repair": {
+          "name": "Utwórz zgłoszenie naprawy",
+          "description": "Utwórz problem w panelu Naprawy (Repairs) w przypadku niepowodzenia."
+        }
+      }
+    },
+    "action": {
+      "name": "Wykonaj akcję z ponawianiem",
+      "description": "Alias dla retry_ha.call.",
+      "fields": {
+        "action": {
+          "name": "Akcja",
+          "description": "Akcja do wykonania (np. light.turn_on)."
+        },
+        "target": {
+          "name": "Cel",
+          "description": "Docelowe encje, urządzenia lub obszary."
+        },
+        "data": {
+          "name": "Dane",
+          "description": "Parametry przekazywane do akcji."
+        },
+        "retries": {
+          "name": "Liczba ponowień",
+          "description": "Maksymalna liczba prób ponowienia."
+        },
+        "delay": {
+          "name": "Opóźnienie",
+          "description": "Początkowe opóźnienie między próbami w sekundach."
+        },
+        "backoff": {
+          "name": "Mnożnik opóźnienia",
+          "description": "Wykładniczy mnożnik opóźnienia."
+        },
+        "max_delay": {
+          "name": "Maksymalne opóźnienie",
+          "description": "Maksymalny limit opóźnienia w sekundach."
+        },
+        "expected_state": {
+          "name": "Oczekiwany stan",
+          "description": "Stan, jaki musi osiągnąć encja docelowa (np. 'on')."
+        },
+        "expected_state_timeout": {
+          "name": "Limit czasu oczekiwanego stanu",
+          "description": "Czas oczekiwania na osiągnięcie oczekiwanego stanu przez encję (w sekundach)."
+        },
+        "on_error": {
+          "name": "Akcja awaryjna przy błędzie",
+          "description": "Akcje do wykonania, jeśli wszystkie próby ponowienia zawiodą."
+        },
+        "raise_on_failure": {
+          "name": "Zgłaszaj błąd przy niepowodzeniu",
+          "description": "Określa, czy zgłaszać błąd przerywający automatyzację."
+        },
+        "create_repair": {
+          "name": "Utwórz zgłoszenie naprawy",
+          "description": "Utwórz problem w panelu Naprawy (Repairs) w przypadku niepowodzenia."
+        }
+      }
+    }
+  }
+}
